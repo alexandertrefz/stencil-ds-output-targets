@@ -16,7 +16,7 @@ describe('createAngularComponentDefinition()', () => {
   inputs: [],
 })
 export class MyComponent {
-  protected el: HTMLElement;
+  protected el: HTMLMyComponentElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -37,7 +37,7 @@ export class MyComponent {
   inputs: ['my-input', 'my-other-input'],
 })
 export class MyComponent {
-  protected el: HTMLElement;
+  protected el: HTMLMyComponentElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -64,7 +64,7 @@ export class MyComponent {
   inputs: [],
 })
 export class MyComponent {
-  protected el: HTMLElement;
+  protected el: HTMLMyComponentElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -87,7 +87,7 @@ export class MyComponent {
   inputs: [],
 })
 export class MyComponent {
-  protected el: HTMLElement;
+  protected el: HTMLMyComponentElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -111,7 +111,7 @@ export class MyComponent {
   inputs: [],
 })
 export class MyComponent {
-  protected el: HTMLElement;
+  protected el: HTMLMyComponentElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -134,7 +134,7 @@ export class MyComponent {
   inputs: ['my-input', 'my-other-input'],
 })
 export class MyComponent {
-  protected el: HTMLElement;
+  protected el: HTMLMyComponentElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -161,7 +161,7 @@ export class MyComponent {
   inputs: [],
 })
 export class MyComponent {
-  protected el: HTMLElement;
+  protected el: HTMLMyComponentElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -185,7 +185,7 @@ export class MyComponent {
   inputs: [],
 })
 export class MyComponent {
-  protected el: HTMLElement;
+  protected el: HTMLMyComponentElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -208,7 +208,7 @@ export class MyComponent {
   standalone: true
 })
 export class MyComponent {
-  protected el: HTMLElement;
+  protected el: HTMLMyComponentElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -240,11 +240,12 @@ export class MyComponent {
   inputs: ['myMember'],
 })
 export class MyComponent {
-  protected el: HTMLElement;
+  protected el: HTMLMyComponentElement;
     /**
    * This is a jsDoc for myMember @deprecated use v2 of this API
    */
-  myMember: Components.MyComponent['myMember'];
+  get myMember() { return this.el['myMember'] };
+  set myMember(value: Components.MyComponent['myMember']) { this.z.runOutsideAngular(() => { this.el['myMember'] = value }); };
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
